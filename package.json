@@ -1,0 +1,29 @@
+{
+  "name": "backend-read.me",
+  "version": "1.0.0",
+  "main": "index.js",
+
+  "scripts": {
+  "start": "node dist/index.js",
+  "dev": "ts-node src/index.ts",
+  "build": "tsc",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilmagusa17/backend-readMe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilmagusa17/backend-readMe/issues"
+  },
+  "homepage": "https://github.com/lilmagusa17/backend-readMe#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
