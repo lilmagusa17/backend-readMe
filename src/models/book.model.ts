@@ -10,10 +10,10 @@ export interface BookDocument extends BookInput, mongoose.Document{
 
 const bookSchema = new mongoose.Schema({
     title: {type: String, required: true, index: true},
-    authors: {type: String},
+    authors: [{type: String}],
     publisher: {type: String},
     publishedDate: {type: Date},
-    categories: {type: Array}
+    categories: [{type: String}]
 },{timestamps: true, collection: "books"})
 
 export const BookModel = mongoose.model<BookDocument>('Book', bookSchema);

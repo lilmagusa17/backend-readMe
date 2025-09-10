@@ -1,1 +1,1 @@
-export * from './book.routes';
+export * as bookRouter from './book.routes';
