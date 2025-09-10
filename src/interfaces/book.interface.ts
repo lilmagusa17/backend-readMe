@@ -5,3 +5,10 @@ export interface BookInput {
     publishedDate: Date,
     categories: string[]
 }
+
+export interface BookInputUpdate{
+    authors: string[],
+    publisher: string,
+    publishedDate: Date,
+    categories: string[]
+}
