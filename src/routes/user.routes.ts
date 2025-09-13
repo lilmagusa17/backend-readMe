@@ -9,6 +9,8 @@ router.post("/register", (req, res) => userController.register(req, res));
 //usuarios admin (se pone el rol)
 router.post("/", auth, authorize(Roles.ADMIN), (req, res) => userController.create(req, res));
 
+router.post("/login", (req, res) => userController.login(req, res));
+
 router.get("/", auth, authorize(Roles.ADMIN), (req, res) => userController.getAll(req, res));
 
 //El update y el delete lo estoy manejando x ids

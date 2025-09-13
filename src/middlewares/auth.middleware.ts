@@ -10,7 +10,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
 
     try {
         token = token.replace("Bearer ", "");
-        const decoded: any = jwt.verify(token, process.env.JWT_SECRET || "");
+        const decoded: any = jwt.verify(token, process.env.JWT_SECRET || "secret");
         (req as any).user = decoded;
         next();
 
