@@ -30,6 +30,16 @@ class UserController {
     }
   }
 
+  public async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body;
+      const token = await userService.login(email, password);
+      res.json({ token });
+    } catch (error: any) {
+      res.status(401).json({ message: error.message });
+    }
+  }
+
   public async getAll(req: Request, res: Response) {
     try {
       const users = await userService.findAll();
@@ -44,6 +54,11 @@ class UserController {
       const { email } = req.params;
       if (!email) {
         return res.status(400).json({ message: "Email param is required" });
+      }
+
+      const loggedUser = (req as any).user;
+      if (loggedUser.role !== "admin") {
+        return res.status(403).json({ message: "Only admin can delete users" });
       }
 
       const deletedUser = await userService.delete(email);
@@ -64,12 +79,11 @@ class UserController {
         return res.status(400).json({ message: "Email param is required" });
       }
 
-      const currentUserRole = req.body.currentUserRole as Roles;
-
+      const loggedUser = (req as any).user;
       const updatedUser = await userService.update(
         email,
         req.body as UserInputUpdate,
-        currentUserRole
+        loggedUser.role
       );
 
       if (!updatedUser) {
@@ -78,10 +92,7 @@ class UserController {
 
       res.json(updatedUser);
     } catch (error: any) {
-      if (error instanceof ReferenceError) {
-        return res.status(400).json({ message: error.message });
-      }
-      res.status(500).json(error);
+      res.status(500).json({ message: error.message });
     }
   }
 }
