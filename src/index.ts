@@ -4,10 +4,14 @@ import { bookRouter, userRouter, reviewRouter } from './routes';
 
 const app: Express = express();
 
-process.loadEnvFile();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
-const PORT = process.env.PORT || 3000;
 
+
+const NODE_ENV = process.env.NODE_ENV || "development";
+const PORT = process.env.PORT || (NODE_ENV === "development" ? 3001 : 3000);
 app.use(express.json()); //Content-type: json
 app.use(express.urlencoded({extended: true})); //para cuando mando archivos en el host, para que pueda recibirlos
 
@@ -16,10 +20,14 @@ app.use("/api/users", userRouter.router);
 app.use("/api/reviews", reviewRouter.router);
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Holiiii');
+     res.send(`Holiiii desde ${NODE_ENV} 🚀`);
 });
 
-db.then( () => 
-    app.listen(PORT, ()=>{
-        console.log(`Server is running on port ${PORT}`)
-}) )
+// Conexión DB y levantar servidor
+db.then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running in ${NODE_ENV} mode on port ${PORT}`);
+  });
+}).catch((err) => {
+  console.error("Error connecting to DB:", err);
+});

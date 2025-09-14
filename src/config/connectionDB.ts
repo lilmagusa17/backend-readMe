@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
-process.loadEnvFile();
+
+// Solo cargar dotenv en desarrollo
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const connectionString = process.env.MONGO_URL || "";
 
