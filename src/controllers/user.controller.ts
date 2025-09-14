@@ -51,17 +51,12 @@ class UserController {
 
   public async delete(req: Request, res: Response) {
     try {
-      const { email } = req.params;
-      if (!email) {
-        return res.status(400).json({ message: "Email param is required" });
+      const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: "User id is required" });
       }
 
-      const loggedUser = (req as any).user;
-      if (loggedUser.role !== "admin") {
-        return res.status(403).json({ message: "Only admin can delete users" });
-      }
-
-      const deletedUser = await userService.delete(email);
+      const deletedUser = await userService.delete(id);
       if (!deletedUser) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -74,14 +69,14 @@ class UserController {
 
   public async update(req: Request, res: Response) {
     try {
-      const { email } = req.params;
-      if (!email) {
-        return res.status(400).json({ message: "Email param is required" });
+      const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: "User id is required" });
       }
 
       const loggedUser = (req as any).user;
       const updatedUser = await userService.update(
-        email,
+        id,
         req.body as UserInputUpdate,
         loggedUser.role
       );

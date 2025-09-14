@@ -1,6 +1,6 @@
 import express, { Request, Response} from 'express';
 import { userController } from '../controllers';
-import { auth, authorize } from "../middlewares"; // autenticación JWT
+import { auth, authorize } from "../middlewares"; //auth JWT
 import { Roles } from '../constants/rolesBurned';
 
 export const router = express.Router();

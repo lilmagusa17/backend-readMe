@@ -56,32 +56,27 @@ class UserService {
   }
 
   public async update(
-    email: string,
+    id: string,
     userInput: UserInputUpdate,
-    currentUserRole: string
-  ): Promise<UserDocument | null> {
-    const userExists = await this.findByEmail(email);
+    currentUserRole: string): Promise<UserDocument | null> {
+      const userExists = await UserModel.findById(id);
+      if (!userExists) {
+        throw new ReferenceError("User doesn't exist");
+      }
+
+      if (userInput.password) {
+        userInput.password = await bcrypt.hash(userInput.password, 10);
+      }
+
+      return UserModel.findByIdAndUpdate(id, userInput, {new: true,});
+    }
+
+  public async delete(id: string): Promise<UserDocument | null> {
+    const userExists = await UserModel.findById(id);
     if (!userExists) {
       throw new ReferenceError("User doesn't exist");
     }
-    
-    if (userInput.password) {
-      userInput.password = await bcrypt.hash(userInput.password, 10);
-    }
-
-    return UserModel.findOneAndUpdate({ email }, userInput, {
-      returnOriginal: false,
-    });
-  }
-
-    public async delete(email: string): Promise<UserDocument | null> {
-    const userExists = await this.findByEmail(email);
-    if (!userExists) {
-      throw new ReferenceError("User doesn't exist");
-    }
-    return UserModel.findOneAndDelete({ email });
+    return UserModel.findByIdAndDelete(id);
   }
 }
-
-
 export const userService = new UserService();
