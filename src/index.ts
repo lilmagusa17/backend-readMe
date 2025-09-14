@@ -4,7 +4,10 @@ import { bookRouter, userRouter, reviewRouter } from './routes';
 
 const app: Express = express();
 
-process.loadEnvFile();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 
 
 const NODE_ENV = process.env.NODE_ENV || "development";
