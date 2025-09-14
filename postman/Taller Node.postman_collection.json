@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "fbc6e8a6-3f98-4078-b3b8-f7b7651c8a32",
+		"name": "Taller Node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39515916",
+		"_collection_link": "https://compunet2-9507.postman.co/workspace/Compunet2-Workspace~5d3c6804-bf4e-4ed2-8f4f-1d1213384e5f/collection/39515916-fbc6e8a6-3f98-4078-b3b8-f7b7651c8a32?action=share&source=collection_link&creator=39515916"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.collectionVariables.set('userToUpdate', responseJson._id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Maria\",\n    \"email\": \"maria@gmail.com\",\n    \"password\": \"maria123\",\n    \"role\": \"reader\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{users_url}}register",
+							"host": [
+								"{{url_prod}}{{users_url}}register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.collectionVariables.set('token', responseJson.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@example.com\",\n    \"password\": \"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{users_url}}login",
+							"host": [
+								"{{url_prod}}{{users_url}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.collectionVariables.set('userToDelete', responseJson._id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"mario\",\n    \"email\": \"mario@gmail.com\",\n    \"password\": \"mario123\",\n    \"role\": \"reader\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{users_url}}",
+							"host": [
+								"{{url_prod}}{{users_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_prod}}{{users_url}}",
+							"host": [
+								"{{url_prod}}{{users_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"Nuevo Nombre\",\n  \"password\": \"nuevoPass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{users_url}}{{userToUpdate}}",
+							"host": [
+								"{{url_prod}}{{users_url}}{{userToUpdate}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_prod}}{{users_url}}{{userToDelete}}",
+							"host": [
+								"{{url_prod}}{{users_url}}{{userToDelete}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.collectionVariables.set('bookToDelete', responseJson.title);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Prueba2\",\n    \"authors\":[\"Vanessa\", \"Mariana\", \"Natalia\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"fiction\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{books_url}}",
+							"host": [
+								"{{url_prod}}{{books_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Prueba\",\n    \"authors\":[\"Vanessa\", \"Mariana\", \"Natalia\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"fiction\"]\n}\n"
+						},
+						"url": {
+							"raw": "{{url_prod}}{{books_url}}",
+							"host": [
+								"{{url_prod}}{{books_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Prueba\",\n    \"authors\":[\"Vanessa\", \"Mariana\", \"Natalia\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"fiction\"]\n}\n"
+						},
+						"url": {
+							"raw": "{{url_prod}}{{books_url}}{{bookToDelete}}",
+							"host": [
+								"{{url_prod}}{{books_url}}{{bookToDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.collectionVariables.set('bookId', responseJson._id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"authors\":[\"Vanessa\", \"Mariana\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"science-fiction\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{books_url}}{{bookToUpdate}}",
+							"host": [
+								"{{url_prod}}{{books_url}}{{bookToUpdate}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Create Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": \"68c0aab9c5e1e268bfed9452\", \n    \"userId\": \"68c636b335370526af683c51\", \n    \"rating\": 4, // 1..5\n    \"title\": \"Review Prueba\",\n    \"content\": \"pues ahi esta maso el libro, ni bueno ni malo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{reviews_url}}",
+							"host": [
+								"{{url_prod}}{{reviews_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.collectionVariables.set(\"reviewId\", responseJson[1]._id);",
+									"",
+									"pm.collectionVariables.set(\"reviewToDelete\", responseJson[0]._id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"authors\":[\"Vanessa\", \"Mariana\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"science-fiction\"]\n}\n"
+						},
+						"url": {
+							"raw": "{{url_prod}}{{reviews_url}}book/{{bookId}}",
+							"host": [
+								"{{url_prod}}{{reviews_url}}book"
+							],
+							"path": [
+								"{{bookId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Review By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"authors\":[\"Vanessa\", \"Mariana\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"science-fiction\"]\n}\n"
+						},
+						"url": {
+							"raw": "{{url_prod}}{{reviews_url}}{{reviewId}}",
+							"host": [
+								"{{url_prod}}{{reviews_url}}{{reviewId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"authors\":[\"Vanessa\", \"Mariana\"],\n    \"publisher\": \"ICESI\",\n    \"publishedDate\": \"2025-01-09\",\n    \"categories\":[\"science-fiction\"]\n}\n"
+						},
+						"url": {
+							"raw": "{{url_prod}}{{reviews_url}}{{reviewToDelete}}",
+							"host": [
+								"{{url_prod}}{{reviews_url}}{{reviewToDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 3, \n    \"title\": \"Mal libro\",\n    \"content\": \"lo lei una segunda vez y empeoro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_prod}}{{reviews_url}}{{reviewId}}",
+							"host": [
+								"{{url_prod}}{{reviews_url}}{{reviewId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "userToUpdate",
+			"value": ""
+		},
+		{
+			"key": "userToDelete",
+			"value": ""
+		},
+		{
+			"key": "bookToDelete",
+			"value": ""
+		},
+		{
+			"key": "bookId",
+			"value": ""
+		},
+		{
+			"key": "reviewId",
+			"value": ""
+		},
+		{
+			"key": "reviewToDelete",
+			"value": ""
+		}
+	]
+}
