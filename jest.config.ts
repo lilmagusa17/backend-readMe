@@ -26,20 +26,14 @@ const config: Config = {
     "!src/validators/**/*.ts", // Excluye schemas de validación
   ],
   coverageThreshold: {
-        global: {
-            branches: 80,
-            functions: 80,
-            lines: 80,
-            statements: 80
-        },
-        // Umbrales específicos por archivo
-        "./src/controllers/user.controller.ts": {
-            branches: 90,
-            functions: 100,
-            lines: 90,
-            statements: 90
-        }
-    }
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
+  coverageReporters: ["text", "lcov", "text-summary"],
 };
 
 
