@@ -7,6 +7,16 @@ class ReviewController {
   public async create(req: Request, res: Response) {
     try {
       const payload = req.body as ReviewInput;
+
+      if (!payload?.bookId || !payload?.userId) {
+        return res
+          .status(400)
+          .json({ message: "bookId and userId are required" });
+      }
+      if (payload.rating == null) {
+        return res.status(400).json({ message: "rating is required" });
+      }
+
       const newReview: ReviewDocument = await reviewService.create(payload);
       res.status(201).json(newReview);
     } catch (error) {

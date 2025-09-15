@@ -49,6 +49,22 @@ class UserController {
     }
   }
 
+  public async getOne(req: Request, res: Response) {
+    try {
+      const { email } = req.params;
+    if (!email) {
+      return res.status(400).json({ message: "User email is required" });
+    }
+      const user = await userService.findByEmail(email);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json(user);
+    } catch (error: any) {
+      res.status(500).json(error);
+    }
+  }
+
   public async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -62,6 +78,7 @@ class UserController {
       }
 
       res.json({ message: "User deleted successfully", user: deletedUser });
+      res.status(204).send();
     } catch (error: any) {
       res.status(500).json(error);
     }
