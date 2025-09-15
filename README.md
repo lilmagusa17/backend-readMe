@@ -35,7 +35,7 @@ Authorization: Bearer <token>
 Main Endpoints
 ---------------------------------------------------
 
-Users (/users)
+Users (/api/users)
 
 Type | Endpoint   | Descripción                          
 -------|------------|--------------------------------------
@@ -47,7 +47,7 @@ PUT    | /:id       | Updates an user
 DELETE | /:id       | Deletes an user                    
 
 ---------------------------------------------------
-Books (/books)
+Books (api//books)
 ---------------------------------------------------
 
 Type | Endpoint   | Descripción
@@ -58,7 +58,7 @@ PUT    | /:title    | Updates book
 DELETE | /:title    | Deletes book
 
 ---------------------------------------------------
-Reviews (/reviews)
+Reviews (/api/reviews)
 ---------------------------------------------------
 
 Método | Endpoint     | Descripción
