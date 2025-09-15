@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/30</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/30</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,28 +98,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -127,29 +127,29 @@
 import { ReviewDocument, ReviewModel } from "../models";
 &nbsp;
 class ReviewService {
-  public <span class="fstat-no" title="function not covered" >async create(reviewInput: ReviewInput): Promise&lt;ReviewDocument&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return ReviewModel.create(reviewInput);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  public async create(reviewInput: ReviewInput): Promise&lt;ReviewDocument&gt; {
+    return ReviewModel.create(reviewInput);
+  }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >async findById(id: string): Promise&lt;ReviewDocument | null&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return ReviewModel.findById(id);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  public async findById(id: string): Promise&lt;ReviewDocument | null&gt; {
+    return ReviewModel.findById(id);
+  }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >async findByBook(bookId: string): Promise&lt;ReviewDocument[]&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return ReviewModel.find({ bookId }).sort({ createdAt: -1 });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  public async findByBook(bookId: string): Promise&lt;ReviewDocument[]&gt; {
+    return ReviewModel.find({ bookId }).sort({ createdAt: -1 });
+  }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >async update(</span>
-<span class="cstat-no" title="statement not covered" >    id: string,</span>
-<span class="cstat-no" title="statement not covered" >    payload: Partial&lt;ReviewInput&gt;</span>
-<span class="cstat-no" title="statement not covered" >  ): Promise&lt;ReviewDocument | null&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return ReviewModel.findByIdAndUpdate(id, payload, { new: true });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  public async update(
+    id: string,
+    payload: Partial&lt;ReviewInput&gt;
+  ): Promise&lt;ReviewDocument | null&gt; {
+    return ReviewModel.findByIdAndUpdate(id, payload, { new: true });
+  }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >async delete(id: string): Promise&lt;ReviewDocument | null&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    // Borrado físico. Si prefieres soft-delete, modifica aquí.</span>
-<span class="cstat-no" title="statement not covered" >    return ReviewModel.findByIdAndDelete(id);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  public async delete(id: string): Promise&lt;ReviewDocument | null&gt; {
+    // Borrado físico. Si prefieres soft-delete, modifica aquí.
+    return ReviewModel.findByIdAndDelete(id);
+  }
 }
 &nbsp;
 export const reviewService = new ReviewService();
@@ -160,7 +160,7 @@ export const reviewService = new ReviewService();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-14T19:10:07.705Z
+                at 2025-09-15T02:41:12.253Z
             </div>
         <script src="../prettify.js"></script>
         <script>
