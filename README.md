@@ -42,7 +42,8 @@ Type | Endpoint   | Descripción
 POST   | /register  | User registration, defaul role: reader
 POST   | /          | User creation, given role               
 POST   | /login     | Logs in and returns token   
-GET    | /          | Gets all users        
+GET    | /          | Gets all users 
+GET    | /:id       | Gets an user 
 PUT    | /:id       | Updates an user                 
 DELETE | /:id       | Deletes an user                    
 
